@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
-int o;
+int p,q;
 struct player{
     string name;
     string sex;
@@ -9,7 +9,7 @@ struct player{
     string type;
     string classs;
     string tel;
-    double score;
+    double score[15];
     };
 struct judge{
     string num;
@@ -20,11 +20,11 @@ struct judge{
 void player()
 {
     struct player s1[100];
-    int n,i;
+    int i;
     cout<<"请输入要录入的选手个数:"<<endl;
-    cin>>n;
+    cin>>p;
     cout<<"请依次录入选手姓名、性别、节目名称、节目类型、选手班级与选手电话"<<endl;
-    for(i=0;i<n;i++)
+    for(i=0;i<p;i++)
     {
         cin>>s1[i].name;
         cin>>s1[i].sex;
@@ -36,16 +36,15 @@ void player()
     cout<<"已成功录入选手信息!"<<endl;
 
 
-
 }
 void judge()
     {
         struct judge s2[20];
         int i;
         cout<<"请输入要录入的评委个数:"<<endl;
-        cin>>o;
+        cin>>q;
         cout<<"请录入评委编号、姓名与性别"<<endl;
-        for(i=0;i<o;i++)
+        for(i=0;i<q;i++)
         {
             cin>>s2[i].num;
             cin>>s2[i].name;
@@ -56,13 +55,36 @@ void judge()
     }
 void begin()
 {
-    int i,max,min,temp;
-    for(i=0;i<o;i++)
+    struct player s1[100];
+    int n,i,max,min,z;
+    max=s1[n].score[1];
+    cout<<"开始打分"<<endl;
+    for(n=1;n<=p;n++)
     {
-        cout<<"请输入第"<<i<<"位评委的分数"<<endl;
+        cout<<"请给第"<<n<<"位选手打分："<<endl;
+        for(i=1;i<=q;i++)
+        {
+            cout<<"请输入第"<<i<<"位评委的分数"<<endl;
+            cin>>s1[n].score[i];
+            {
+                for(z=1;z<=q;i++)
+                {
+                    if(s1[n].score[z]>max)
+                    {
+                        max=s1[n].score[z];
+                    }
+                    cout<<"去掉一个最高分"<<max<<endl;
+                    cout<<"去掉一个最低分"<<min<<endl;
+                    cout<<"正在计算中.."<<endl;
+                }
+                
+            }
+            
+        }
+        
     }
-    cout<<"正在计算中.."<<endl;
     
+
 }
 
 int main()
@@ -73,15 +95,18 @@ int main()
         cout<<"----欢迎进入打分系统----"<<endl;
         cout<<"----1.录入选手信息----"<<endl;
         cout<<"----2.录入评委信息----"<<endl;
-        cout<<"----3.开始打分----"<<endl;
-        cout<<"----4.保存分数信息----"<<endl;
-        cout<<"----5.退出打分系统----"<<endl;
+        cout<<"----3.读入选手信息----"<<endl;
+        cout<<"----4.读入评委信息----"<<endl;
+        cout<<"----5.开始打分----"<<endl;
+        cout<<"----6.保存分数信息----"<<endl;
+        cout<<"----7.退出打分系统----"<<endl;
+        
         do
         {
-            cout<<"请输入'1-5'选项"<<endl;
+            cout<<"请输入'1-7'选项:"<<endl;
             cin>>x;
         }
-        while(x<1 ||x>5);
+        while(x<1 ||x>7);
         
         switch(x)
         {
@@ -92,17 +117,21 @@ int main()
             case 2:
                 judge();
                 break;
-            case 3:
+/*            case 3:
+                read in1();
+                break;
+            case 4:
+                read in2();
+                break;
+ */
+            case 5:
                 begin();
                 break;
-                
-            case 5:
+            case 7:
                 cout<<"thanks for using!"<<endl;
                 exit(1);
-                
         }
     }
     
     return 0;
-    
 }
