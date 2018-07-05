@@ -12,6 +12,10 @@ struct player{
     string classs;
     string tel;
     double score[15];
+    double max;
+    double min;
+    double avg;
+    double sum;
     };
 struct judge{
     string num;
@@ -55,14 +59,14 @@ void judge()
         }
         cout<<"已成功录入评委信息!"<<endl;
     }
+
 void begin()
 {
     struct player s1[100];
-    int n,i,max,min,z;
+    int n,i,z;
     p=p1+p2;
     q=q1+q2;
-    min=s1[n].score[1];
-    max=s1[n].score[2];
+    
     cout<<"开始打分"<<endl;
     for(n=1;n<=p;n++)
     {
@@ -72,52 +76,78 @@ void begin()
         {
             cout<<"请输入第"<<i<<"位评委的分数"<<endl;
             cin>>s1[n].score[i];
-            for(z=1;z<=q;z++)
-            {
-                if(s1[n].score[z]>max)
-                {
-                    max=s1[n].score[z];
-                }
-                cout<<"去掉一个最高分"<<max<<endl;
-            }
-            for(z=1;z<=q;z++)
-            {
-                if(s1[n].score[z]<min)
-                {
-                    min=s1[n].score[z];
-                }
-                cout<<"去掉一个最低分"<<min<<endl;
-            }
-            
-            
-    
-    
         }
-        
+        s1[n].min=s1[n].score[1];
+        s1[n].max=s1[n].score[1];
+        for(z=1;z<=q;z++)
+        {
+            if(s1[n].score[z]>s1[n].max)
+            {
+                s1[n].max=s1[n].score[z];
+            }
+            
+        }
+        for(z=1;z<=q;z++)
+        {
+            if(s1[n].score[z]<s1[n].min)
+            {
+                s1[n].min=s1[n].score[z];
+            }
+            
+        }
+        cout<<"去掉一个最高分"<<s1[n].max<<endl;
+        cout<<"去掉一个最低分"<<s1[n].min<<endl;
+        for(i=1; i<=q; i++)
+        {
+            s1[n].sum+=s1[n].score[i];
+        }
+        s1[n].avg=(s1[n].sum-s1[n].min-s1[n].max)/(q-2);
+        cout<<"平均分为："<<s1[n].avg<<endl;
     }
     
     
     
-    /*max=s1[n].score[1];                   max,min,z;
-    {
-        for(z=1;z<=q;z++)
-        {
-            if(s1[n].score[z]>max)
-            {
-                max=s1[n].score[z];
-            }
-            cout<<"去掉一个最高分"<<max<<endl;
-            cout<<"去掉一个最低分"<<min<<endl;
-            cout<<"正在计算中.."<<endl;
-        }
-        
-    }*/
+
     
     
     
     
 
 }
+
+
+
+
+
+
+/*void Readplayer()
+{
+    FILE* fp;
+    int i,k;
+    fp=fopen("//Users//Stereophonic//Desktop//Program\ Sort//judge.csv","w");
+    if(fp == NULL)
+        cout<<"文件打开失败"<<endl;
+    else
+    {
+        k=1;
+        fprintf(fp,"评委编号，评委姓名，评委性别,\n");
+        for(i=0;i<q2;i++)
+        {
+            fprintf(fp,"%s,%s,%s\n",)
+            k++
+        }
+    }
+
+    
+}
+
+
+void Readjudge()
+{
+    
+    
+    
+}*/
 
 int main()
 {
@@ -145,15 +175,14 @@ int main()
             case 1:
                 player();
                 break;
-                
             case 2:
                 judge();
                 break;
             case 3:
-                //read in1();
+                //read Readplayer();
                 break;
             case 4:
-                //read in2();
+                //Readjudge();
                 break;
 
             case 5:
