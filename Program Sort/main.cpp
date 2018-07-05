@@ -1,7 +1,9 @@
+//节目类型说明
 #include<iostream>
 #include<string>
 using namespace std;
-int p,q;
+int p,q,p1,q1;            //p，q分别为选手和裁判的个数 个数等于录入与读入之和（eg:p=p1+p2）
+int p2=0,q2=0;      //将文件中选手和评委个数均初始化为0；
 struct player{
     string name;
     string sex;
@@ -20,11 +22,11 @@ struct judge{
 void player()
 {
     struct player s1[100];
-    int i;
+    int i;       //p1为程序中录入的选手的个数
     cout<<"请输入要录入的选手个数:"<<endl;
-    cin>>p;
+    cin>>p1;
     cout<<"请依次录入选手姓名、性别、节目名称、节目类型、选手班级与选手电话"<<endl;
-    for(i=0;i<p;i++)
+    for(i=0;i<p1;i++)
     {
         cin>>s1[i].name;
         cin>>s1[i].sex;
@@ -40,11 +42,11 @@ void player()
 void judge()
     {
         struct judge s2[20];
-        int i;
+        int i;           //q1为程序中录入的评委的个数
         cout<<"请输入要录入的评委个数:"<<endl;
-        cin>>q;
+        cin>>q1;
         cout<<"请录入评委编号、姓名与性别"<<endl;
-        for(i=0;i<q;i++)
+        for(i=0;i<q1;i++)
         {
             cin>>s2[i].num;
             cin>>s2[i].name;
@@ -57,32 +59,62 @@ void begin()
 {
     struct player s1[100];
     int n,i,max,min,z;
-    max=s1[n].score[1];
+    p=p1+p2;
+    q=q1+q2;
+    min=s1[n].score[1];
+    max=s1[n].score[2];
     cout<<"开始打分"<<endl;
     for(n=1;n<=p;n++)
     {
+        cout<<1<<endl;
         cout<<"请给第"<<n<<"位选手打分："<<endl;
         for(i=1;i<=q;i++)
         {
             cout<<"请输入第"<<i<<"位评委的分数"<<endl;
             cin>>s1[n].score[i];
+            for(z=1;z<=q;z++)
             {
-                for(z=1;z<=q;i++)
+                if(s1[n].score[z]>max)
                 {
-                    if(s1[n].score[z]>max)
-                    {
-                        max=s1[n].score[z];
-                    }
-                    cout<<"去掉一个最高分"<<max<<endl;
-                    cout<<"去掉一个最低分"<<min<<endl;
-                    cout<<"正在计算中.."<<endl;
+                    max=s1[n].score[z];
                 }
-                
+                cout<<"去掉一个最高分"<<max<<endl;
+            }
+            for(z=1;z<=q;z++)
+            {
+                if(s1[n].score[z]<min)
+                {
+                    min=s1[n].score[z];
+                }
+                cout<<"去掉一个最低分"<<min<<endl;
             }
             
+            
+    
+    
         }
         
     }
+    
+    
+    
+    /*max=s1[n].score[1];                   max,min,z;
+    {
+        for(z=1;z<=q;z++)
+        {
+            if(s1[n].score[z]>max)
+            {
+                max=s1[n].score[z];
+            }
+            cout<<"去掉一个最高分"<<max<<endl;
+            cout<<"去掉一个最低分"<<min<<endl;
+            cout<<"正在计算中.."<<endl;
+        }
+        
+    }*/
+    
+    
+    
     
 
 }
@@ -117,13 +149,13 @@ int main()
             case 2:
                 judge();
                 break;
-/*            case 3:
-                read in1();
+            case 3:
+                //read in1();
                 break;
             case 4:
-                read in2();
+                //read in2();
                 break;
- */
+
             case 5:
                 begin();
                 break;
